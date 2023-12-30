@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Test uap</title>
+    </head>
+    <body>
+        <h1> UAP</h1>
+        <h2> Barang</h2>
+            <table border="1">
+                <tr>
+                    <th>kode</th>
+                    <th>barang</th>
+                    <th>harga</th>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>Barang A</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Barang B</td>
+                    <td>20000</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>Barang C</td>
+                    <td>30000</td>
+                </tr>
+            </table>
+
+            <h2> Inputan User</h2>
+            <table border="1">
+                <tr>
+                    <td>
+                        <label for="input_kode"> Masukkan kode Barang :</label>
+                        <input type="number" id="input_kode">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="input_jumlah"> Banyaknya Barang:</label>
+                        <input type="number" id="input_jumlah">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button>Submit></button>
+                    </td>
+                </tr>
+            </table>
+            
+            <script>
+                let dataBarang = [
+                    {kode: '001', nama_barang: 'A', harga: '10000'},
+                    {kode: '002', nama_barang: 'B', harga: '20000'},
+                    {kode: '003', nama_barang: 'C', harga: '30000'},
+                ];
+                function data(kodeBarang){
+                    let barang = dataBarang.find(item => item.kode === kodeBarang);
+                    return barang ? barang.harga : 0;    
+                }
+
+                function kirim(){
+                    let input_kode = document.getElementById("input_kode").value;
+                    let input_jumlah = document.getElementById("input_jumlah").value;
+
+                    let harga_barang = data(input_kode);
+                    let total_harga = parseInt(input_jumlah) * harga_barang;
+
+                    alert("Total Belanja :" + total_harga);
+
+                    if (uang == null || uang === ''){
+                        alert("Input Uang Tidak Valid");
+                        return;
+                    }
+
+                    uang = parseInt(uang);
+
+                    if(isNaN(uang)){
+                        alert("Input Uang Tidak Valid");
+                        return;
+                    }
+
+                    let kembalian = uang - total_harga;
+
+                    if (kembalian >= 0){
+                        alert(
+                            "Total Belanja" + total_harga + "Uang yang diberikan" + uang + "kembalian" + kembalian );
+                    } else {
+                        alert("Uang yang diberikan kurang")
+                    }
+                }
+            </script>
+        </body>
+</html>
